@@ -39,66 +39,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
     this.mapService.currentOption.subscribe(option => {
       this.mapService.selectedTime.subscribe(time => {
-          if (option === 'precipitation_global') {
-            console.log(time, option);
-            if (this.currentLayerId) {
-              this.map.removeLayer(this.currentLayerId);
-              this.currentLayerId = null;
-            }
-            this.currentStyle = listStylesPrecipitationGlobal[time];
-            this.map.setStyle(this.currentStyle);
-            this.map.setZoom(2);
-            this.currentOption = option;
-            this.selectedTime = time;
-          }
-          if (option === 'precipitation_local') {
-            if (this.currentStyle !== defaultStyle) {
-              this.currentStyle = defaultStyle;
-              this.map.setStyle(this.currentStyle);
-            }
-            if (option !== this.currentOption || time !== this.selectedTime) {
-              if (this.currentLayerId) {
-                this.map.removeLayer(this.currentLayerId);
-                this.currentLayerId = `${option}_${time}`;
-                this.map.addLayer({
-                  id: this.currentLayerId,
-                  type: 'raster',
-                  source: `precipitation-local-${time}`,
-                  paint : {
-                    'raster-opacity': 0.8
-                  }
-                });
-                this.map.setCenter([112.78, 13.82]);
-                this.map.setZoom(4);
-                this.currentOption = option;
-                this.selectedTime = time;
-              }
-            }
-            console.log(time, option);
-          }
-          if (option === 'flood_local') {
-            console.log(time, option);
-            if (this.currentLayerId) {
-              this.map.removeLayer(this.currentLayerId);
-            }
-            if (this.currentStyle !== defaultStyle) {
-              this.currentStyle = defaultStyle;
-              this.map.setStyle(this.currentStyle);
-            }
-            this.currentLayerId = `${option}_${time}`;
-            this.map.addLayer({
-              id: this.currentLayerId,
-              type: 'raster',
-              source: `flood-local`,
-              paint : {
-                'raster-opacity': 0.8
-              }
-            });
-            this.map.setCenter([105.82, 21.01]);
-            this.map.setZoom(12);
-            this.currentOption = option;
-            this.selectedTime = time;
-          }
+        this.generate(option, time);
       });
     });
   }
@@ -175,5 +116,81 @@ export class MapComponent implements OnInit, AfterViewInit {
         .setLngLat([e.lngLat.lng, e.lngLat.lat])
         .addTo(this.map);
       });
+  }
+
+  generate(option: string, time: number) {
+          if (option === 'precipitation_global') {
+            console.log(time, option);
+            this.generatePrecipitationGlobal(time);
+          } else if (option === 'precipitation_local') {
+            console.log(time, option);
+            this.generatePrecipitationLocal(time);
+
+          } else if (option === 'flood_local') {
+            console.log(time, option);
+            this.generateFloodLocal(time);
+          } else {
+            console.log('selected wrong');
+          }
+  }
+
+  generatePrecipitationGlobal(time) {
+    if (this.currentLayerId) {
+      this.map.removeLayer(this.currentLayerId);
+      this.currentLayerId = null;
+    }
+    this.currentStyle = listStylesPrecipitationGlobal[time];
+    this.map.setStyle(this.currentStyle);
+    this.map.setZoom(2);
+    this.currentOption = 'precipitation_global';
+    this.selectedTime = time;
+  }
+
+  generatePrecipitationLocal(time) {
+    if (this.currentStyle !== defaultStyle) {
+      this.currentStyle = defaultStyle;
+      this.map.setStyle(this.currentStyle);
+    }
+    if (this.currentOption !== 'precipitation_local' || this.selectedTime !== time) {
+      if (this.currentLayerId) {
+        this.map.removeLayer(this.currentLayerId);
+      }
+      this.currentLayerId = `precipitation_local_${time}`;
+      this.map.addLayer({
+        id: this.currentLayerId,
+        type: 'raster',
+        source: `precipitation-local-${time}`,
+        paint : {
+          'raster-opacity': 0.8
+        }
+      });
+      this.map.setCenter([112.78, 13.82]);
+      this.map.setZoom(4);
+      this.currentOption = 'precipitation_local';
+      this.selectedTime = time;
+    }
+  }
+
+  generateFloodLocal(time) {
+    if (this.currentStyle !== defaultStyle) {
+      this.currentStyle = defaultStyle;
+      this.map.setStyle(this.currentStyle);
+    }
+    if (this.currentLayerId) {
+      this.map.removeLayer(this.currentLayerId);
+    }
+    this.currentLayerId = `flood_local_${time}`;
+    this.map.addLayer({
+      id: this.currentLayerId,
+      type: 'raster',
+      source: `flood-local`,
+      paint : {
+        'raster-opacity': 0.8
+      }
+    });
+    this.map.setCenter([105.82, 21.01]);
+    this.map.setZoom(12);
+    this.currentOption = 'flood_local';
+    this.selectedTime = time;
   }
 }

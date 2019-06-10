@@ -52,9 +52,8 @@ export class TimeBarComponent implements OnInit {
       this.value += 1;
       this.clearInterval();
       this.mapService.changeTime(this.value);
-      }, 3000);
-    }
-    else {
+      }, 4000);
+    } else {
       this.classBtnIcon = 'fas fa-play';
       clearInterval(this.valueInterval);
     }
