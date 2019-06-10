@@ -9,6 +9,8 @@ import { DisplayOptionsComponent } from './display-options/display-options.compo
 import { TimeBarComponent } from './time-bar/time-bar.component';
 import { ColorRulerComponent } from './color-ruler/color-ruler.component';
 import { StandardModeComponent } from './standard-mode/standard-mode.component';
+import { PrecipitationGlobalMapComponent } from './map/precipitation-global-map/precipitation-global-map.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import { StandardModeComponent } from './standard-mode/standard-mode.component';
     DisplayOptionsComponent,
     TimeBarComponent,
     ColorRulerComponent,
-    StandardModeComponent
+    StandardModeComponent,
+    PrecipitationGlobalMapComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

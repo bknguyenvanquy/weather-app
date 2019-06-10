@@ -4,11 +4,11 @@ export const DISPLAY_OPTIONS = [
   //   name: 'Gió',
   //   iconClass: 'fas fa-wind'
   // },
-  {
-    id: 'precipitation_global',
-    name: 'Lượng mưa toàn cầu',
-    iconClass: 'fas fa-tint'
-  },
+  // {
+  //   id: 'precipitation_global',
+  //   name: 'Lượng mưa toàn cầu',
+  //   iconClass: 'fas fa-tint'
+  // },
   {
     id: 'precipitation_local',
     name: 'Lượng mưa khu vực',

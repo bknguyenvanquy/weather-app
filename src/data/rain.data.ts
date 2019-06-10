@@ -95,11 +95,7 @@ function creatCoordinatesArray(data: any) {
   for(let i = lat.length - 1; i >= 0 ; i--) {
     coordinates.push([lon[0], lat[i]]);
   }
-
-  // console.log(lat.length);
-  // console.log(lon.length);
   coordinates.push([lon[0], lat[0]]);
-  // console.log(coordinates);
   return coordinates;
 }
 

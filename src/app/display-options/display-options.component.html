@@ -1,7 +1,25 @@
-<ul>
+<!-- <ul>
   <li *ngFor="let option of displayOptions">
     <a
       (click)="chooseOption(option.id)"
+      [ngClass]="{'active': currentOption === option.id}">
+        {{ option.name }} <i [class]="option.iconClass"></i>
+    </a>
+  </li>
+</ul> -->
+
+<ul>
+  <li>
+    <a routerLink="/global-map"
+        (click)="chooseGlobal()"
+        [ngClass]="{'active': isGlobal}"
+      >Lượng mưa toàn cầu <i class="fas fa-tint"></i>
+    </a>
+  </li>
+  <li *ngFor="let option of displayOptions">
+    <a
+      (click)="chooseOption(option.id)"
+      routerLink="/"
       [ngClass]="{'active': currentOption === option.id}">
         {{ option.name }} <i [class]="option.iconClass"></i>
     </a>

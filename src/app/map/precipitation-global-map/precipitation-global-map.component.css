@@ -1,0 +1,27 @@
+#global-map{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* #info {
+  display: block;
+  position: fixed;
+  top: 10px;
+  left: 260px;
+  min-width: 220px;
+  border: none;
+  font-size: 12px;
+  color: white;
+  background: transparent;
+  margin: 0;
+  text-align: left;
+  } */
+
+  ::ng-deep .mapboxgl-map .mapboxgl-control-container .mapboxgl-ctrl-bottom-left .mapboxgl-ctrl a.mapboxgl-ctrl-logo {
+    display: none !important;
+  }

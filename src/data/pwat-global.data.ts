@@ -213,8 +213,6 @@ function creatCoordinatesArray(data: any) {
   for(let i = 0; i < lat.length; i++) {
     coordinates.push([lon[i], lat[i]]);
   }
-  console.log(lat.length);
-  console.log(lon.length);
   return coordinates;
 }
 

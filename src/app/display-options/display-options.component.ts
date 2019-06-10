@@ -12,15 +12,22 @@ export class DisplayOptionsComponent implements OnInit {
   displayOptions = DISPLAY_OPTIONS;
 
   currentOption = 'precipitation_local';
+  isGlobal = false;
 
   constructor(private mapService: MapService) { }
 
   ngOnInit() {
   }
 
+  chooseGlobal() {
+    this.currentOption = '';
+    this.isGlobal = true;
+  }
+
   chooseOption(option: string) {
     this.currentOption = option;
     this.mapService.changeOption(option);
+    this.isGlobal = false;
   }
 
 }
