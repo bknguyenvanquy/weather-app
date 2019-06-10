@@ -1,0 +1,50 @@
+span {
+  padding-right: 25px;
+  padding-top: 10px;
+  border-right: 1px solid #ddd;
+  font-weight: bold;
+}
+
+span:last-child {
+  border-right: none;
+}
+
+span:first-child {
+  padding-left: 25px;
+}
+
+.time-bar {
+  display: flex;
+  justify-content: space-between;
+  border-top: 3px solid #ddd;
+}
+
+span.day-picker {
+  cursor: pointer;
+}
+
+span.day-picker:hover {
+  color: orange;
+}
+
+::ng-deep .ng5-slider-bubble.ng5-slider-span {
+  display: none !important;
+}
+
+.btn-play {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  margin-top: 15px;
+  margin-right: 5px;
+  background-color:white;
+  color:#9D0300;
+}
+
+/* ::ng-deep .ng5-slider span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-min .ng5-slider-ticks .ng5-slider-tick span.ng5-slider-span.ng5-slider-tick-legend {
+  max-width: unset !important;
+  white-space: pre !important;
+} */
+
+

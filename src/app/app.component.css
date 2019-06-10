@@ -1,0 +1,32 @@
+app-map {
+  position: relative;
+}
+
+app-display-options {
+  position: absolute;
+  top: 150px;
+  right: 10px;
+  color: white;
+}
+
+app-time-bar {
+  position: absolute;
+  bottom: 40px;
+  left: 10px;
+  color: white;
+  width: 70%;
+  display: flex;
+}
+
+app-color-ruler {
+  position: absolute;
+  bottom: 35px;
+  right: 10px;
+  width: 25%;
+}
+
+app-standard-mode {
+  position: absolute;
+  bottom: 70px;
+  right: 10px;
+}

@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let option of displayOptions">
+    <a
+      (click)="chooseOption(option.id)"
+      [ngClass]="{'active': currentOption === option.id}">
+        {{ option.name }} <i [class]="option.iconClass"></i>
+    </a>
+  </li>
+</ul>

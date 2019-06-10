@@ -1,0 +1,29 @@
+.color-ruler {
+  background: linear-gradient(to right, rgb(47, 31, 45), rgb(63, 48, 68), rgb(76, 68, 94), rgb(85, 90, 120), rgb(90, 113, 146), rgb(91, 137, 171), rgb(87, 163, 194), rgb(79, 189, 214), rgb(70, 216, 231), rgb(64, 244, 244));
+  -webkit-transition: .3s opacity;
+  transition: .3s opacity;
+  margin-bottom: 5px;
+  border-radius: 20px;
+  width: 100%;
+  white-space: nowrap;
+  font-size: 12px;
+  box-shadow: 0 0 4px 0 black;
+}
+
+.color-ruler span {
+  display: inline-block;
+  line-height: 2.2;
+  text-align: center;
+  vertical-align: middle;
+  /* width: 30px; */
+}
+
+.color-ruler span:first-child {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.color-ruler span:last-child {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
