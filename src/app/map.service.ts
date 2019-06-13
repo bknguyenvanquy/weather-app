@@ -15,6 +15,9 @@ export class MapService {
   private timeSource = new BehaviorSubject<number>(0);
   selectedTime = this.timeSource.asObservable();
 
+  private routerSouce = new BehaviorSubject<string>('');
+  router = this.routerSouce.asObservable();
+
   constructor(private httpClient: HttpClient) { }
 
   getLocationByCoordiates(lon, lat) {
@@ -27,5 +30,9 @@ export class MapService {
 
   changeTime(time: number) {
     this.timeSource.next(time);
+  }
+
+  changeRouter(router: string) {
+    this.routerSouce.next(router);
   }
 }

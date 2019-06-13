@@ -2,8 +2,8 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angula
 import * as mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { MapService, TOKEN } from '../../map.service';
-import { position } from 'src/data/rain.data';
-import { defaultStyle, listStylesPrecipitationGlobal } from 'src/data/list-styles-precipitation-global.data';
+import { listStylesPrecipitationGlobal } from 'src/data/list-styles-precipitation-global.data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-precipitation-global-map',
@@ -19,9 +19,11 @@ export class PrecipitationGlobalMapComponent implements OnInit, AfterViewInit {
   currentStyle = listStylesPrecipitationGlobal[0];
 
   @ViewChild('global-map') mapElement: ElementRef;
-  constructor(private mapService: MapService) { }
+  constructor(private mapService: MapService,
+              private router: Router) { }
 
   ngOnInit() {
+    this.mapService.changeRouter(this.router.url);
     mapboxgl.accessToken = TOKEN;
 
     this.mapService.selectedTime.subscribe(time => {

@@ -4,6 +4,7 @@ import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { MapService, TOKEN } from '../map.service';
 import { position } from 'src/data/rain.data';
 import { defaultStyle } from 'src/data/list-styles-precipitation-global.data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -27,13 +28,15 @@ export class MapComponent implements OnInit, AfterViewInit {
   currentOption: string = 'precipitation_local';
   selectedTime: number = 0;
   currentLayerId: string = 'precipitation_local_0';
-  currentStyle = defaultStyle;
 
   @ViewChild('map') mapElement: ElementRef;
 
-  constructor(private mapService: MapService) { }
+  constructor(private mapService: MapService,
+              private router: Router) { }
 
   ngOnInit() {
+
+    this.mapService.changeRouter(this.router.url);
     mapboxgl.accessToken = TOKEN;
 
     this.mapService.currentOption.subscribe(option => {
@@ -45,7 +48,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.createMap(this.currentStyle);
+    this.createMap(defaultStyle);
   }
 
   addMarker(e) {
@@ -78,9 +81,6 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   generatePrecipitationLocal(time) {
-    if (this.currentStyle !== defaultStyle) {
-      this.currentStyle = defaultStyle;
-    }
     if (this.currentOption !== 'precipitation_local' || this.selectedTime !== time) {
       if (this.currentLayerId) {
         this.map.removeLayer(this.currentLayerId);
@@ -91,7 +91,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         type: 'raster',
         source: `precipitation-local-${time}`,
         paint : {
-          'raster-opacity': 0.8
+          'raster-opacity': 0.6
         }
       });
       this.map.setCenter([112.78, 13.82]);
@@ -102,9 +102,6 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   generateFloodLocal(time) {
-    if (this.currentStyle !== defaultStyle) {
-      this.currentStyle = defaultStyle;
-    }
     if (this.currentLayerId) {
       this.map.removeLayer(this.currentLayerId);
     }
@@ -114,7 +111,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       type: 'raster',
       source: 'flood-local',
       paint : {
-        'raster-opacity': 0.8
+        'raster-opacity': 0.6
       }
     });
     this.map.setCenter([105.82, 21.01]);

@@ -1,12 +1,46 @@
-<div class="color-ruler">
-  <span style="width: 10%">10</span>
-  <span style="width: 10%">18</span>
-  <span style="width: 10%">26</span>
-  <span style="width: 10%">34</span>
-  <span style="width: 10%">42</span>
-  <span style="width: 10%">50</span>
-  <span style="width: 10%">58</span>
-  <span style="width: 10%">66</span>
-  <span style="width: 10%">74</span>
-  <span style="width: 10%">82</span>
+<!--  , , , , , , , ,  -->
+<div class="global-rain-ruler" *ngIf="isGlobalRain">
+  <p class="unit">kg/m<sup>2</sup></p>
+  <div class="color-ruler">
+    <p style=" background-color: rgb(47, 31, 45) ">10</p>
+    <p style=" background-color: rgb(63, 48, 68)">18</p>
+    <p style=" background-color: rgb(76, 68, 94)">26</p>
+    <p style=" background-color: rgb(85, 90, 120)">34</p>
+    <p style=" background-color: rgb(90, 113, 146)">42</p>
+    <p style=" background-color: rgb(91, 137, 171)">50</p>
+    <p style=" background-color: rgb(87, 163, 194)">58</p>
+    <p style=" background-color: rgb(79, 189, 214)">66</p>
+    <p style=" background-color: rgb(70, 216, 231)">74</p>
+    <p style=" background-color: rgb(64, 244, 244)">82</p>
+  </div>
+</div>
+<!-- #ffffff, #c1def7, #a6cee3, #6ab6dc, #479dcf, #2481bb, #1764a3, #003c78, #073576) -->
+<div class="local-rain-ruler" *ngIf="isLocalRain">
+  <p class="unit">mm</p>
+  <div class="color-ruler">
+    <p style=" background-color: #ffffff">0</p>
+    <p style=" background-color: #c1def7">54.6</p>
+    <p style=" background-color: #a6cee3">110</p>
+    <p style=" background-color: #6ab6dc">164</p>
+    <p style=" background-color: #479dcf">218</p>
+    <p style=" background-color: #2481bb">273</p>
+    <p style=" background-color: #1764a3">328</p>
+    <p style=" background-color: #003c78">378</p>
+    <p style=" background-color: #073576">420</p>
+  </div>
+</div>
+<!-- #ffffff, #c1def7, #a6cee3, #6ab6dc, #479dcf, #2481bb, #1764a3, #003c78, #073576) -->
+<div class="local-flood-ruler" *ngIf="isLocalFlood">
+  <p class="unit">m</p>
+  <div class="color-ruler">
+    <p style=" background-color: #ffffff">0</p>
+    <p style=" background-color: #c1def7">0.19</p>
+    <p style=" background-color: #a6cee3">0.37</p>
+    <p style=" background-color: #6ab6dc">0.55</p>
+    <p style=" background-color: #479dcf">0.74</p>
+    <p style=" background-color: #2481bb">0.92</p>
+    <p style=" background-color: #1764a3">1.11</p>
+    <p style=" background-color: #003c78">1.28</p>
+    <p style=" background-color: #073576">1.42</p>
+  </div>
 </div>
