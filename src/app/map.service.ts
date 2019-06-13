@@ -21,7 +21,7 @@ export class MapService {
   constructor(private httpClient: HttpClient) { }
 
   getLocationByCoordiates(lon, lat) {
-    return this.httpClient.get(`http://api.tiles.mapbox.com/v4/geocode/mapbox.places/${lon},${lat}.json?access_token=${TOKEN}`);
+    return this.httpClient.get(`https://api.tiles.mapbox.com/v4/geocode/mapbox.places/${lon},${lat}.json?access_token=${TOKEN}`);
   }
 
   changeOption(option: string) {
