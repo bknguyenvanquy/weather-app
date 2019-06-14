@@ -41,11 +41,13 @@ export class PrecipitationGlobalMapComponent implements OnInit, AfterViewInit {
   addPopup(e) {
     this.mapService.getLocationByCoordiates(e.lngLat.lng.toString(), e.lngLat.lat.toString())
       .subscribe((data:any) => {
-        let placeName = data.features[0].place_name.split(', ')
-        .filter(item => isNaN(Number(item))).join(', ');
-        const popup = new mapboxgl.Popup().setText(placeName)
-        .setLngLat([e.lngLat.lng, e.lngLat.lat])
-        .addTo(this.map);
+        if (data) {
+          let placeName = data.features[0].place_name.split(', ')
+          .filter(item => isNaN(Number(item))).join(', ');
+          const popup = new mapboxgl.Popup().setText(placeName)
+          .setLngLat([e.lngLat.lng, e.lngLat.lat])
+          .addTo(this.map);
+        }
       });
   }
 
