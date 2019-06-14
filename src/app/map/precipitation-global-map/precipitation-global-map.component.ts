@@ -25,10 +25,6 @@ export class PrecipitationGlobalMapComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.mapService.changeRouter(this.router.url);
     mapboxgl.accessToken = TOKEN;
-
-    this.mapService.selectedTime.subscribe(time => {
-      this.generatePrecipitationGlobal(time);
-    });
   }
 
   ngAfterViewInit() {
@@ -57,7 +53,7 @@ export class PrecipitationGlobalMapComponent implements OnInit, AfterViewInit {
     if (this.currentStyle !== listStylesPrecipitationGlobal[time]) {
       this.currentStyle = listStylesPrecipitationGlobal[time];
       this.map.setStyle(this.currentStyle);
-      this.map.setZoom(2);
+      this.map.setZoom(10);
     }
   }
 
@@ -65,8 +61,8 @@ export class PrecipitationGlobalMapComponent implements OnInit, AfterViewInit {
     this.map = new mapboxgl.Map({
       container: 'global-map',
       style: style,
-      center: [112.78, 13.82],
-      zoom: 2
+      center: [105.804817, 21.028511],
+      zoom: 10
     });
 
     this.map.addControl(new MapboxGeocoder({
@@ -80,6 +76,9 @@ export class PrecipitationGlobalMapComponent implements OnInit, AfterViewInit {
       trackUserLocation: true
     }));
     this.map.addControl(new mapboxgl.NavigationControl());
+    this.mapService.selectedTime.subscribe(time => {
+      this.generatePrecipitationGlobal(time);
+    });
     this.map.on('mousemove', (event) => {
       this.coordinatesOfMap = event.point;
       this.coordinatesOfGlobal = event.lngLat;
@@ -88,7 +87,7 @@ export class PrecipitationGlobalMapComponent implements OnInit, AfterViewInit {
       this.addPopup(event);
       this.map.flyTo({
         center: [event.lngLat.lng, event.lngLat.lat],
-        zoom: 10
+        zoom: 12
       });
     });
   }

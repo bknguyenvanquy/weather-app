@@ -35,16 +35,8 @@ export class MapComponent implements OnInit, AfterViewInit {
               private router: Router) { }
 
   ngOnInit() {
-
     this.mapService.changeRouter(this.router.url);
     mapboxgl.accessToken = TOKEN;
-
-    this.mapService.currentOption.subscribe(option => {
-      this.generate(option, this.selectedTime);
-    });
-    this.mapService.selectedTime.subscribe(time => {
-      this.generate(this.currentOption, time);
-    });
   }
 
   ngAfterViewInit() {
@@ -75,7 +67,6 @@ export class MapComponent implements OnInit, AfterViewInit {
     } else if (option === 'flood_local') {
       this.generateFloodLocal(time);
     } else {
-      console.log('selected wrong');
       return;
     }
   }
@@ -94,8 +85,8 @@ export class MapComponent implements OnInit, AfterViewInit {
           'raster-opacity': 0.6
         }
       });
-      this.map.setCenter([112.78, 13.82]);
-      this.map.setZoom(4);
+      this.map.setCenter([105.804817, 21.028511]);
+      this.map.setZoom(10);
       this.currentOption = 'precipitation_local';
       this.selectedTime = time;
     }
@@ -115,7 +106,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       }
     });
     this.map.setCenter([105.82, 21.01]);
-    this.map.setZoom(12);
+    this.map.setZoom(13);
     this.currentOption = 'flood_local';
     this.selectedTime = time;
   }
@@ -124,8 +115,8 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.map = new mapboxgl.Map({
       container: 'map',
       style: style,
-      center: [112.78, 13.82],
-      zoom: 4
+      center: [105.804817, 21.028511],
+      zoom: 10
     });
 
     this.map.addControl(new MapboxGeocoder({
@@ -161,6 +152,12 @@ export class MapComponent implements OnInit, AfterViewInit {
           'raster-opacity': 0.6
         }
       });
+      this.mapService.currentOption.subscribe(option => {
+        this.generate(option, this.selectedTime);
+      });
+      this.mapService.selectedTime.subscribe(time => {
+        this.generate(this.currentOption, time);
+      });
     });
 
     this.map.on('mousemove', (event) => {
@@ -171,7 +168,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       this.addPopup(event);
       this.map.flyTo({
         center: [event.lngLat.lng, event.lngLat.lat],
-        zoom: 10
+        zoom: 12
       });
     });
   }
