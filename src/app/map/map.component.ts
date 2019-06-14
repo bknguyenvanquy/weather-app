@@ -53,7 +53,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   addPopup(e) {
     this.mapService.getLocationByCoordiates(e.lngLat.lng.toString(), e.lngLat.lat.toString())
       .subscribe((data:any) => {
-        if (data) {
+        if (data.features[0]) {
           let placeName = data.features[0].place_name.split(', ')
           .filter(item => isNaN(Number(item))).join(', ');
           const popup = new mapboxgl.Popup().setText(placeName)
